@@ -83,3 +83,6 @@
 - In JavaScript, these collections are known as arrays, and on top of allowing you to access the individual elements, they have some common methods which help us manipulate them. For example, the property `length` allows you to know the amount of elements in a collection.
 
 - Although the methods of element manipulation we've explored allow us to access some HTML elements, they don't allow us to manipulate all. Usually you manipulate the nodes of the DOM tree which is created by the HTML document.
+
+---
+
