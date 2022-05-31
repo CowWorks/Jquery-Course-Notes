@@ -31,4 +31,11 @@
 ### The `document` object:
 - The `window.document` object contains the structure with the html elements of the documents that is currently loaded in the browser. This object provides us with a series of methods which allow us to manipulate said structure. This structure is commonly known as the *Document Object model* or **DOM**.
 
-- We can create the content of a web page on the run. This means that we don't need to even
+- We can create the content of a web page on the run. This means that we don't need to create an HTML file. The way this is done is by using the `document.write(html_text)`. Here's an example: 
+```js
+1        let my_window = window.open();
+2
+3        my_window.document.write("<p>This is the content of my_window</p>");
+```
+
+- We can also access different HTML elements loaded on the page. When the browser processes an HTML file and encounters an HTML element that can be rendered using javascript, an object is automatically generated which corresponds with the HTML element. This way, you can manipulate the HTML element through said object using JavaScript. The object
