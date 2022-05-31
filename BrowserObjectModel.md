@@ -8,6 +8,12 @@
 
 - `window.prompt(msg)`: A method that asks the user for some input
 
-- ``
+- `window.confirm(msg)`: Shows a pop-up with a message that asks for confirmation from the user.
+
+- `window.console`: An object used to write to the developer console of the browser. It's very useful when we're developing with JavaScript. To write to the console we use the method `window.console.log(msg)`.
+
+- `window.innerHeight` and `window.innerWidth`: Properties that give us info on the actual size of the window.
+
+
 
 ---
