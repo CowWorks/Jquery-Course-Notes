@@ -3,7 +3,7 @@
 
 ---
 
-### The Window Object:
+### The `window` Object:
 - The window object containes diferent objects, properties, and methods that allow us to consult the state of the browser and other elements. I will proceed by listing a few of the methods and objects it contains
 
 - `window.alert(msg)`: A method that shows message alerts in the browser window.
@@ -27,3 +27,8 @@
 - NOTE: Since `window` represents a global object that contains everything else, there are many occasions in which it's not required to reference it. For example, in stead of writing `window.alert(msg)`, you could just write `alert(msg)`.
 
 ---
+
+### The `document` object:
+- The `window.document` object contains the structure with the html elements of the documents that is currently loaded in the browser. This object provides us with a series of methods which allow us to manipulate said structure. This structure is commonly known as the *Document Object model* or **DOM**.
+
+- We can create the content of a web page on the run. This means that we don't need to even
