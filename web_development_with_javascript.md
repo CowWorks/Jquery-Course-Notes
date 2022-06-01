@@ -86,7 +86,7 @@
 
 - Although the methods of element manipulation we've explored allow us to access some HTML elements, they don't allow us to manipulate all. Usually you manipulate the nodes of the DOM tree which is created by the HTML document.
 
----
+<br>
 
 # DOM API: Node selection and navigation
 
@@ -96,5 +96,24 @@
 
 - The most common structure for the tree contains a root node commonly referred to with the `<html></html>` tag which in turns contains a head (`<head></head>`) node and a body (`<body></body>`) node.
 
+<br>
+
 > NOTE: The head node contains page metadata (title, meta tags, and any other identifiers), while the body node contains the `HTML` code of the website.
 
+<br>
+
+- The DOM tree can be manipulated with JavaScript using the DOM API which defines the following types of nodes:
+    - `document`: The root node which holds all other nodes.
+    - `element`: Represents every HTML tag.
+    - `attr`: Represents every attribute belonging to an HTML tag.
+    - `comment`: Represents every comment within the HTML file.
+
+- Each node aforementioned defines a set of methods that allow us to manipulate them.
+
+- In order to modify the DOM and the web page the following steps are needed:
+    1. Select the node(s) we want to modify.
+    2. Employ methods to manipulate them and in turn modify the web page.
+
+---
+
+### Selecting Nodes
