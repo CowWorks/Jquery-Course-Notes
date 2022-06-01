@@ -116,4 +116,40 @@
 
 ---
 
-### Selecting Nodes
+### Selecting Nodes:
+- There are a few ways to access specific nodes in a document:
+    - Using either the nomber of the tags or the name of some of it's attributes (`id` or `class` to be precise).
+    - Making queries that use CSS selectors.
+    - Using the relationships between nodes and navigating the DOM tree.
+
+---
+
+### Using tags and attributes:
+- `getElementsbyTagName(tag)`: This method returns an array with every node contained within a tag. If there are none, the array will be empty.
+
+- `getElementById(ID)`: Returns a node corresponding with the element using the `ID` inputted. If the element doesn't exist, the function will return null.
+
+- `getElementsByClassName(class)`: This method returns an array with the `class` attribute inputted. It can be used with any node, returning the descending nodes which contain the aforementioned tag. If there are none, the array will be empty.
+
+---
+
+### Querying CSS selectors:
+- `querySelector(selector)`: This method returns *the first element* which matches the CSS selector (or group of selectors) pased into the function.
+
+- `querySelectorAll(selector)`: In contrast to the previous function, this function returns *all* elements that match the selector as an array.
+
+---
+
+### Navigating the DOM Tree
+- Once a node is selected using the previous methods, the following (node) properties and methods can be used to access the nodes it contains:
+    - `childNodes`: Is a property which contains an array with the children of a node.
+    - `firstElementChild` and `lastElementChild`: Are properties which give access to the first and last child elements of a node respectively. If `firstChild` or `lastChild` are used, the text contained will be included.
+    - `parentNode`: Is a property which gives access to the node containing the current node.
+    - `nextElementSibling` and `previousElementSibling`: Are properties for accessing the next and previous nodes in the same level. Returns null if there are none. `nextSibling` and `previousSibling` will also include text.
+    - `hasChildNodes()`: A method that returns whether the node has children or not.
+
+<br>
+
+> NOTE: When the method is executed (`hasChildNodes()`), the returned value will be `true` if the node has children, and `false` if it doesn't.
+
+<br>
