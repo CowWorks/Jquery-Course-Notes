@@ -153,3 +153,27 @@
 > NOTE: When the method is executed (`hasChildNodes()`), the returned value will be `true` if the node has children, and `false` if it doesn't.
 
 <br>
+
+# DOM API: Modificating the DOM Tree
+
+### Node Modification:
+- `innerHTML`: Is a property that allows access and modification of the HTML content inside of a node. A string can be assigned to this value in order to modify the content.
+
+- `style`: Is a property that allows for the modification of a node's style. We can use `style.property` to modify a specific property, although you may need to do `style[property]` in cases in which the property has a character like a "-".
+
+---
+
+### Creation and deletion of Nodes:
+- `document.createElement(tag)`: Creates a new element with the specified tag.
+
+- `document.createTextNode(text)`: Creates a node of text.
+
+- `[current_node].cloneNode(true/false)`: Creates a duplicate of the current node. The parameter controls whether or not it clones the children of the node.
+
+- `[current_node].appendChild(new_node)`: Adds a new node as a child of `[current_node]`. The new node is added at the end of the list of children.
+
+- `[current_node].insertBefore(new_node, previous_node)`: Adds a new node as a child of `[current_node]`. The new node is added in front of the node identified as `previous_node`.
+
+- `[current_node].replaceChild(new_node, old_node)`: Replaces the child node identified as `old_node` with the node identified as `new_node`.
+
+- `[current_node].`
