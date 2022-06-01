@@ -1,3 +1,5 @@
+# Browser Objects
+
 ### Browser Object Model:
 - The Browser object model is a set of javascript objects which allow you to interact with the browser. It's not standarized.
 
@@ -85,4 +87,14 @@
 - Although the methods of element manipulation we've explored allow us to access some HTML elements, they don't allow us to manipulate all. Usually you manipulate the nodes of the DOM tree which is created by the HTML document.
 
 ---
+
+# DOM API: Node selection and navigation
+
+### DOM tree:
+
+- The DOM (Document Object Model) tree is a structure which is generated when an HTML file gets loaded into a browser.
+
+- The most common structure for the tree contains a root node commonly referred to with the `<html></html>` tag which in turns contains a head (`<head></head>`) node and a body (`<body></body>`) node.
+
+> NOTE: The head node contains page metadata (title, meta tags, and any other identifiers), while the body node contains the `HTML` code of the website.
 
