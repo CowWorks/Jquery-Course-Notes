@@ -176,4 +176,27 @@
 
 - `[current_node].replaceChild(new_node, old_node)`: Replaces the child node identified as `old_node` with the node identified as `new_node`.
 
-- `[current_node].`
+- `[current_node].removeChild(node)`: Removes the child node identified as `node`.
+
+---
+
+### Modificating an Element's Atrributes:
+- HTML elements can have attributes. This implies that we can access and modify those attributes with JavaScript. Modifying attributes could be useful in the event that we want to change the class of an element and in turn change it's CSS properties.
+
+- Since the DOM tree has different types of nodes, access to attributes is only possible with nodes of the `Element` type.
+
+- We can use the following methods to modify the attributes of an element:
+    - `[node].hasAttribute(attribute_name)`: Returns a boolean depending on if it has an attribute that matches the one passed in.
+    - `[node].getAttribute(attribute_name)`: Returns the value of the attribute matching the passed value `attribute_name`. Returns an empty string or null if the the attribute isn't present.
+    - `[node].setAttribute(attribute_name, attribute_value)`:  Sets the value of an attribute on the specified element. If the attribute already exists, the value is updated; otherwise a new attribute is added with the specified name and value. 
+
+---
+
+### Modifying an Element's Classes:
+- Every `element` node has a property `classList` which facilitates the modification of an object's classes.
+
+- `[node].classList.add(new_class)`: Adds a new class to the `[node]` specified.
+
+- `[node].classList.remove(existing_class)`: Removes a class from `[node]`.
+
+- `[node].classList.contains(class)`: Returns a boolean indicating whether `[node]` contains `class`.
