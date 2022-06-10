@@ -36,17 +36,17 @@
 - We can create the content of a web page on the run. This means that we don't need to create an HTML file. The way this is done is by using the `document.write(html_text)`. Here's an example: 
 
 ```js
-        let my_window = window.open();
- 
-        my_window.document.write("<p>This is the content of my_window</p>");
+let my_window = window.open();
+
+my_window.document.write("<p>This is the content of my_window</p>");
 ```
 
 - We can also access different HTML elements loaded on the page. When the browser processes an HTML file and encounters an HTML element that can be rendered using JavaScript, an object is automatically generated which corresponds with the HTML element. This way, you can manipulate the HTML element through said object using JavaScript. The object can be identified by it's name (HTML `name` attribute) or it's identifier (HTML `id` attribute). Example:
 
 ```html
-        <form action="" name="my_form">
-                <input name="text_box" type="Text" value="Data">
-        </form>
+<form action="" name="my_form">
+        <input name="text_box" type="Text" value="Data">
+</form>
 ```
 
 - This generates an object denominated as `my_form` which contains a property named `text_box`
@@ -54,20 +54,20 @@
 - Using JavaScript, we can access the form in any of the following ways:
 
 ```js
-        window.document.my_form;
-        window.document.forms[0];
-        window.document.forms["my_form"];
+window.document.my_form;
+window.document.forms[0];
+window.document.forms["my_form"];
 ```
 
 - And we can acces the text input contained within the form in any of the following ways:
 
 ```js
-        window.document.my_form.text_box;
-        window.document.my_form[0];
-        window.document.my_form.elements[0];
-        window.document.forms[0].elements["text_box"];
-        window.document.forms[0][0];
-        window.document.forms["my_form"]["text_box"];
+window.document.my_form.text_box;
+window.document.my_form[0];
+window.document.my_form.elements[0];
+window.document.forms[0].elements["text_box"];
+window.document.forms[0][0];
+window.document.forms["my_form"]["text_box"];
 ```
 
 ---
@@ -220,4 +220,40 @@
 
 <br>
 
-- 
+- Based on the way that events work in the browser, interactivity can be programmed by producing actions in response to events.
+
+- Ideally, when an event happens, we want a "notification". We do so by *subscribing* to an event by using an event handler.
+
+---
+
+### Event and Callback Handlers:
+- An event handler or listener lets you know when an event has been produced. 
+
+- When subscribing to an event, it is necessary to indicate which action we want to carry out in response to the event. This is known as a *callback*, and in JavaScript it's just a function.
+
+- There are a few different ways to register an element's event. Here are some examples:
+    - ```html
+        <!-- Although this isn't the best way of doing it, it is possible to directly indicate the event through an attribute in HTML -->
+
+        <div id="button" onClick="alert("A click has ocurred!")">Click me!</div>
+      ```
+    - ```js
+        // It is possible to indicate the event through JavaScript as well. This is done by using a property which has a similar name to the event with the addition of the prefix "on".
+
+        function notify() {
+                alert("A click has ocurred!");
+        }
+
+        let button = document.getElementById("button");
+        button.onClick = notify;
+      ```
+    - ```js
+        // Using the addEventListener(event, function) method, the same thing previously displayed can be achieved. The event parameter is the event you're subscribing to, while the function parameter is the function you want to run when the event is produced.
+
+        function notify() {
+                alert("A click has ocurred!");
+        }
+
+        let button = document.getElementById("button");
+        button.addEventListener('click', notify);
+      ```
