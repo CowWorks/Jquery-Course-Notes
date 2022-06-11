@@ -232,28 +232,43 @@ window.document.forms["my_form"]["text_box"];
 - When subscribing to an event, it is necessary to indicate which action we want to carry out in response to the event. This is known as a *callback*, and in JavaScript it's just a function.
 
 - There are a few different ways to register an element's event. Here are some examples:
-    - ```html
-        <!-- Although this isn't the best way of doing it, it is possible to directly indicate the event through an attribute in HTML -->
-
+    - Although this isn't the best way of doing it, it is possible to directly indicate the event through an attribute in HTML
+        ```html
         <div id="button" onClick="alert("A click has ocurred!")">Click me!</div>
-      ```
-    - ```js
-        // It is possible to indicate the event through JavaScript as well. This is done by using a property which has a similar name to the event with the addition of the prefix "on".
-
+        ```
+    
+    - It is possible to indicate the event through JavaScript as well. This is done by using a property which has a similar name to the event with the addition of the prefix `on`.
+        ```js
         function notify() {
                 alert("A click has ocurred!");
         }
 
-        let button = document.getElementById("button");
+        let button = document.getElementById("my_button");
         button.onClick = notify;
-      ```
-    - ```js
-        // Using the addEventListener(event, function) method, the same thing previously displayed can be achieved. The event parameter is the event you're subscribing to, while the function parameter is the function you want to run when the event is produced.
-
+        ```
+    
+    - Using the `addEventListener(event, function)` method, the same thing previously displayed can be achieved. The event parameter is the event you're subscribing to, while the function parameter is the function you want to run when the event is produced.
+        ```js
         function notify() {
                 alert("A click has ocurred!");
         }
 
-        let button = document.getElementById("button");
+        let button = document.getElementById("my_button");
         button.addEventListener('click', notify);
-      ```
+        ```
+    
+    - The callback function allows for the use of the variable named `this`. Said variable contains a reference to the element that produced the event, which allows us to manipulate it with ease.
+        ```js        
+        function enter() {
+                this.style["font-weight"] = bold;
+        }
+
+        let button = document.getElementById("my_button");
+        button.addEventListener('mouseenter', enter);
+        ```
+
+<br>
+
+---
+
+### Event Propagation:
