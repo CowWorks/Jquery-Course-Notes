@@ -272,3 +272,6 @@ window.document.forms["my_form"]["text_box"];
 ---
 
 ### Event Propagation:
+- As previously stated, each event is produced by an object. If a callback is passed into the corresponding handler, it will be executed when the object detects the specified event.
+
+- 
