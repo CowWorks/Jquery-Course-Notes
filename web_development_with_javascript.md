@@ -274,4 +274,69 @@ window.document.forms["my_form"]["text_box"];
 ### Event Propagation:
 - As previously stated, each event is produced by an object. If a callback is passed into the corresponding handler, it will be executed when the object detects the specified event.
 
-- 
+- Most of the time objects will be contained within other objects, which can be seen in the DOM tree. This means that the event propagates up the DOM tree. Because of this, the parent node is able to detect the event that has taken place.
+
+- In order to further explore the nature of event propagation, take a look at the following example:
+```html
+<html>
+        <head>
+                <title>Event Propagation</title>
+        </head>
+        <body onClick="alert('The body was clicked')">
+                <p onClick="alert('The first paragraph was clicked')">
+                        Click wherever you feel like clicking.
+                </p>
+                
+                <p onClick="alert('The second paragraph was clicked')">
+                        Here's a paragraph that contains
+                        
+                        <strong onClick="alert('The strong element was clicked')">
+                                some strong text, and
+                                
+                                <emph onClick="alert('The emphasized text was clicked')">
+                                        some emphasized text as well.
+                                </emph>
+                        </strong>
+                </p>
+        </body>
+<html>
+```
+
+<br>
+
+- There are a few things going on in that snippet of code:
+    1. The body element contains two paragraph elements.
+    2. The second paragraph element contains a strong element which in turn contains an emphasized element.
+    3. When we click any element, the click event is propagated to every element which contains said element.
+
+---
+
+### Element Events:
+- These are the main events which allow us to interact with the user when they do something on the page:
+    - `onclick`: When a click is performed on an element.
+    - `ondblclick`: When a double click is performed on an element.
+    - `onfocus`: When the focus is on an element. When we're talking about focus, we're referring to the mouse hovering over an element.
+    - `onblur`: When the focus stops being on an element (usually to change it to a different element).
+
+---
+
+### Mouse Events:
+- Mouse events are produced when the user (You're not going to believe it... And, you guessed it.) uses the mouse within an HTML page. Here are some of them:
+    - `onmousedown`: When a mouse button is pressed.
+    - `onmouseup`: When a mouse button is released.
+    - `onmouseover`: When the mouse pointer goes over an element.
+    - `onmouseout`: When the mouse pointer exits an element.
+
+---
+
+### Page Events:
+- These events are produced solely by the window object. The main events we can listen for on the page are the following (remember that if you plan on using `addEventListener()` you will have to remove the `on` prefix):
+    - `onload`: Notifies us when a page has been loaded. It's heavily recommended to register a *callback* for this event which will be responsible for adding the rest of the callbacks since once this event has ocurred, it is a given that all of the elements have been loaded.
+    - `onunload`: Notifies us when the content of the page has been unloaded (generally when the page is left).
+    - `onresize`: Notifies us that the window size has changed.
+
+---
+
+<br>
+
+# 
