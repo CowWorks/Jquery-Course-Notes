@@ -339,4 +339,122 @@ window.document.forms["my_form"]["text_box"];
 
 <br>
 
-# 
+# Forms
+
+### Form Events:
+- Forms contain their own events, such as:
+    - `onclick`: This event is triggered when the mouse clicks over an element. It's generally used with the elements `button` and `submit`.
+    - `onchange`: This event is triggered when the user changes the value of a text element. It's often used with the elements `<input  type="text">` or `textarea`. It's also triggered when the user selects an option in a dropdown list (`<select>` element).
+    - `onfocus` and `onblur`: Triggered when a user hovers their cursor over an element of the form and when they stop respectively.
+    - `onsubmit`: Triggered when a form is submitted.
+    - `onreset`: Triggered when the form is reset.
+
+- It should also be noted that pressing the submit button triggers multiple events: `onmousedown`, `onclick`, `onmouseup`, and `onsubmit` to name a few. `onsubmit` is usually employed to validate the fields of the form.
+
+---
+
+### Validating Forms:
+- When an input of the `submit` type is clicked, a callback binded to the event `onsubmit` is triggered. This is usually employed to send the information from the form somewhere. The problem is that this happens even if the form is wrong. For this reason the function that is subscribed to the event contains an `event` parameter which allows us to cancel it in the case of an error. In order to cancel it we need to call the function `[event].preventDefault()`.
+
+---
+
+<br>
+
+# An introduction to jQuery
+
+- jQuery is a simple library for JavaScript which follows the "write less, do more" philosophy. This library holds the purpose of simplifying the writing of JavaScript code for the browser. It does so by allowing the use of calls for tasks which would take multiple lines of code in vanilla JavaScript. On top of which, it simplifies a lot of the more complex tasks like AJAX (Asynchronous JavaScript And XML) calls or DOM manipulation.
+
+- The jQuery library allows us to do the following things:
+    - Manipulating HTML/DOM.
+    - Manipulating CSS.
+    - Personalization of the HTML events.
+    - Effects and animations.
+    - AJAX calls.
+    - As well as some other operations.
+
+---
+
+### Installation:
+- Installation is as simple as downloading the library and adding it as another script in your HTML page. You can download it from [jQuery.com](https://jquery.com/).
+
+- Another option is using one of the versions stored in what is known as the CDN (Content Delivery Networks):
+```html
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+```
+
+---
+
+### General Syntax:
+- jQuery's syntax is quite simple, and in it's own way, very similar to that of CSS. Generally, the mayority of the calls are made up of a *selector* followed by an *action*: `$(selector).action()`.
+
+- With the $ symbol we access the jQuery module.
+
+- The selector allows us to sellect HTML elements. It's a string which represents a CSS selector like the ones used with the functions `querySelector` and `querySelectorAll`.
+
+- The action is ran on **all** elements selected. In other words, unlike what we used to do with JavaScript, it's unnecessary to loop through the elements if we want to perform the same action on all of them.
+
+- We can target a specific element by using the syntax: `$(selector, parent_element).action()`. In this case we only execute the action on the elements that coincide with `selector` and that are children of `parent_element`.
+
+- It is possible to chain the execution of multiple actions over the same selector. The only requirenment is to add the action after the one in front: `$(selector).action1().action2().action3()`.
+
+---
+
+<br>
+
+# Selectors
+
+- Selectors allow us to indicate what elements from the DOM tree we want to apply an action to. These selectors are the same that are used in CSS. The common ones are:
+    - Element
+    - Class
+    - Identifier
+
+---
+
+### Element Selector:
+- It is possible to select an element based on it's HTML tag: `$("p")`. The previous line selects all elements with a paragraph tag.
+
+- Likewise, it is also possible to select elements based on their `id`. In this case we use the # symbol followed by the identifier: `$("#test")`.
+
+---
+
+### Selecting by Class:
+- When selecting by class, a method similar to selecting by `id` is used, with the minor change of using the `.` symbol instead of `#`. This allows us to select elements with a given class: `$(".test")`.
+
+---
+
+### Empty Selectors:
+- Selectors don't always return an element. For example, if we make a mistake when writing the selector, or we modify the DOM and get rid of an element, the selector won't return any element. This means that when we try to run an action on it, an error will be produced.
+
+- The most common way to know if a selector has found an element is by using the `length` attribute of the element. This attribute contains the amount of elements in the DOM that are characterized by the selector. This means that if the attribute is equal to 0, there are no elements of the type. Here's an example of how that can be utilized:
+```js
+let elements = $("#thisisnotarealid");
+
+if(elements.length === 0) {
+        alert("This selector has no elements");
+}
+```
+
+---
+
+### More Selectors:
+
+- Like mentioned earlier, the selectors used by jQuery are the same used in CSS. This means that there are a lot more selectors which give us the ability to select different objects. Here's a list of those selectors:
+    - `$("*")`: Selects all elements.
+    - `$("p.intro")`: This allows us to select a tag (`p`), with the class `intro` (this can be done with any tag and class you have).
+    - `$("p:first")`: Selects the first paragraph.
+    - `$("ul li:first")`: Selects the first `li` element of the first `ul` element.
+    - `$("ul li:first-child")`: Selects the first `li` element of each `ul` element.
+    - `$("[href]")`: Selects all elements with an `href` attribute.
+    - `$("a[target='_blank']")`: Selects all `a` elements with a `target` attribute with the value of `"_blank"`.
+    - `$("a[target!='_blank']")`: Selects all `a` elements with a `target` attribute which doesn't have the `_blank` value.
+    - `$(":button")`: Selects all `button` elements, and all `input` of the type `"button"`.
+    - `$("tr:even")`: Selects all `tr` (table row) elements which are even.
+    - `$("tr:odd")`: Selects all `tr` elements which are odd.
+
+---
+
+<br>
+
+# Events in jQuery
+
+- 
