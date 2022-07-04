@@ -154,12 +154,12 @@ window.document.forms["my_form"]["text_box"];
 
 <br>
 
-# DOM API: Modificating the DOM Tree
+# DOM API: Modifying the DOM Tree
 
-### Node Modification:
-- `innerHTML`: Is a property that allows access and modification of the HTML content inside of a node. A string can be assigned to this value in order to modify the content.
+### Modifying Nodes:
+- `innerHTML`: Is a property that allows access and modifying the HTML content inside of a node. A string can be assigned to this value in order to modify the content.
 
-- `style`: Is a property that allows for the modification of a node's style. We can use `style.property` to modify a specific property, although you may need to do `style[property]` in cases in which the property has a character like a "-".
+- `style`: Is a property that allows for the modifying a node's style. We can use `style.property` to modify a specific property, although you may need to do `style[property]` in cases in which the property has a character like a "-".
 
 ---
 
@@ -180,7 +180,7 @@ window.document.forms["my_form"]["text_box"];
 
 ---
 
-### Modificating an Element's Atrributes:
+### Modifying an Element's Atrributes:
 - HTML elements can have attributes. This implies that we can access and modify those attributes with JavaScript. Modifying attributes could be useful in the event that we want to change the class of an element and in turn change it's CSS properties.
 
 - Since the DOM tree has different types of nodes, access to attributes is only possible with nodes of the `Element` type.
@@ -193,7 +193,7 @@ window.document.forms["my_form"]["text_box"];
 ---
 
 ### Modifying an Element's Classes:
-- Every `element` node has a property `classList` which facilitates the modification of an object's classes.
+- Every `element` node has a property `classList` which facilitates the modifying an object's classes.
 
 - `[node].classList.add(new_class)`: Adds a new class to the `[node]` specified.
 
@@ -457,4 +457,88 @@ if(elements.length === 0) {
 
 # Events in jQuery
 
-- 
+### Syntax for using events in jQuery:
+- In order to use events, we employ a selector, followed by the event we want target, and within parenthesis, the function or callback that will be executed in response to said event:
+```js
+$(selector).event(function(){
+        // Code that should run when the event is detected by the selector.
+});
+```
+
+- An alternative way of doing it is by ussing the action `on`:
+```js
+$(selector).on(event, function(){
+        // Code that should run when the event is detected by the selector.
+});
+```
+
+- In both cases, the name of the event is the same. Sometimes this is the only way to register the event. For example, a form's `reset` event can only be regfistered in this manner because there's no `$(selector).reset`.
+
+---
+
+### Load Events:
+- Given that jQuery can handle the same events as vanilla JavaScript, it is also able to handle `window` events. One of them being the `load` event:
+```js
+$(window).load(function(){
+        //
+});
+```
+
+- That being said, it's not always necessary to wait for all images, scripts, and icons to load. As long as the DOM is loaded, we can start manipulating it with jQuery. In order to start working with the DOM when it's loaded, jQuery has the following method:
+```js
+$(document).ready(function(){
+        // jQuery code
+});
+```
+
+- Since it's commonly used, jQuery provides us with a shorter syntax:
+```js
+$(function(){
+        // jQuery code
+});
+```
+
+---
+
+<br>
+
+# Modifying The DOM Tree
+
+### HTML Elements With jQuery:
+- It is possible to create an empty HTML element subtituting the selector with the tag of the element we want to create. For example, in order to create a paragraph we can use the following syntax:
+```js
+let paragraph = $("<p>");
+```
+
+<br>
+
+- If we want to create a div element with a specific class we can use the following syntax:
+```js
+let element_with_class = $("<div class='my_class'>");
+```
+
+<br>
+
+- The content of the HTML elements can be accessed and modified using the following jQuery methods: `text()`, `html()`, and `val()`.
+
+---
+
+### Accessing an Element's Content:
+- It's possible ot access the content of the elements in a page using the following methods *without parameters*:
+    - `text()`: Returns the content of an HTML element in text form.
+    - `html()`: Returns the content while maintaining the HTML tags.
+    - `val()`: Is only used to return the value of form's field.
+
+---
+
+### Adding Elements To The DOM:
+- Just like JavaScript, jQuery has functionality for modifying the DOM:
+    - `append()`: Inserts the parameter as the last child of the selected element.
+    - `prepend()`: Inserts the parameter as the first child of the selected element.
+    - `after()`: Inserts the parameter after the selected element as a sibling.
+    - `before()`: Inserts the parameter before the selected element as a sibling.
+    - `wrap()`: Inserts the parameter as the parent node of the selected element.
+
+---
+
+###
