@@ -541,4 +541,139 @@ let element_with_class = $("<div class='my_class'>");
 
 ---
 
-###
+### Removing Elements From The DOM:
+- In order to remove HTML elements jQuery has the following functions:
+    - `remove()`: Removes the selected node and it's children.
+    - `empty()`: Removes all of the children of the selected node.
+
+---
+
+### Modifying and Accessing Attributes With jQuery:
+- The method `attr()` can be used to obtain or modify the value of an HTML element. Similarly to `text`, `html`, or `val`, the behavior of `attr` depends on the parameters used:
+    - If used with one parameter (the name of the attribute), it will access the value of the specified attribute.
+    - If used with two parameters (the name of the attribute and the new value), the existing specified value will be exchanged with the one given.
+
+---
+
+### Modifying and Accessing Properties with jQuery:
+- Some elements such as those on forms, have properties that we may want to check or change. For example, the `checked` property of a checkbox indicates whether it's selected or not. In order to access or modify these properties, we use the `prop` action. Similarly to the previous, it can be used with one or two parameters:
+    - If used with one parameter (the name of the property), it will access the value of the specified property.
+    - If used with two parameters (the name of the property and the new value), the value of the property will change to the one specified in the second parameter.
+
+---
+
+### Modifying The Classes of an Element:
+- jQuery also contains methods for adding or removing classes. These are: `addClass()` and `removeClass()` which respectively allow us to add and remove classes from an element. The parameter is the name of the class. It is possible to pass an array of names which you want to add or remove. There's also `toggleClass()` which serves to change between assigning and removing one or more classes. 
+
+---
+
+### Modifying The Style of an Element:
+- The `css()` allows us to query or modify any style sheet property of an HTML element. Its operation is simple, similar to the `attr` method that was previously explored:
+```js
+css(property_name); // This is used to consult the property
+css(property_name, value); // This is used to edit the value of the property
+```
+
+---
+
+<br>
+
+# Navigation, Looping, and Filtering.
+
+### Navigating Through The DOM Tree:
+- jQuery provides some actions which allow for the navigation of the DOM. Here are the primary actions:
+    - `parent()`: Selects the paremt element of any selected element.
+    - `children()`: Selects the children elements of the selected element. It's very simple to know whether an element has children or not using this method: `children.length()` will return the size of the collection of children.
+    - `prev()`: Selects the sibling elements previous to the selected one.
+    - `next()`: Selects the sibling elements following the selected one.
+
+- All of these methods accept a selector as a parameter, meaning that it can filter for specific elements. For example: `$("li").parent(".selected")` this snippet of code selects all parent elements of the elements of type `li` that have the `selected` class.
+
+---
+
+### Looping:
+- If we use jQuery then we can't iterate through the selected elements with a for loop, like we did directly with JavaScript. In stead, we can loop through the elements in a similar manner to `foreach`, using `each` instead, which recieves a function with two parameters as a parameter"
+    - The fist (index) is the number of the element inside of the collection of elements selected.
+    - The second (current_element) is the element that we're currently processing.
+
+---
+
+### Filters:
+- Filters allow us to specify the elements we want to work with out of a broader collection. Although jQuery contains multiple methods for filtering, we're only going to be focusing on a couple of the simpler ones: 
+    - `first()`: Only targets the first element of a collection.
+    - `last()`: Only targets the last element of a collection.
+
+<br>
+
+- When the `filter` method is used, the selection focuses on elements from the collection that contain a specific trait or identifier.
+
+---
+
+<br>
+
+# Effects
+
+One of jQuery's features is it's ability to create visual effects with ease: transitions, movements, and animations.
+
+---
+
+### Hide, Show, and Toggle:
+- The methods `hide()` and `show()` allow for the hiding or showing of the selected elements respectively. This is done by modifying the element's `display` property. Here's a way of using it for the sake of making a page more interactive:
+    - It is possible to indicate the speed by using the strings `"slow"` or `"fast"`, or by indicating the time it should take in milliseconds. In this example: `$(p).hide(1000, myFunction)`, a collection of paragraph elements is selected, they are then hidden within a second, and the function named `myFunction` runs after all of that has happened.
+
+- The `toggle()` method allows an element to switch between `hide()` and `show()` or viceversa. It has the same parameters as the previously mentioned functions. One that dictates the time it should take, and another that runs a function after the act.
+
+---
+
+### Fading:
+- The `fadeIn()` method makes a hidden element appear. As parameters it can take the speed as either a value in milliseconds or a string, it can also take a function to be ran after the event.
+
+- The `fadeOut()` method has a behavior opposite to fadeIn and it serves to make an element disappear. It takes in the same parameters as fadeIn.
+
+- Similarly to *hide* and *show*, there's a method for toggling between states. The `fadeToggle()` method serves to toggle between *fadeIn* and *fadeOut*. It should be noted that this method has the same parameters.
+
+---
+
+### Sliding:
+- The `slideDown()` method serves to show an element with a dropdown style animation. The speed can be indicated with the values `"slow"` or `"fast"` and, like previous methods a function can be specified to be ran after the method.
+
+- Opposite to `slideDown()`, we have the `slideUp()` method which hides an element with a reduction animation. This method takes in the same parameters as the previous one.
+
+- Yet again we have a toggle method. `slideToggle()` allows you to toggle between the two states.
+
+---
+
+### Animations:
+- In the past couple of topics, we have explored some of jQuery's built in animations, that being said, it's about time we got to talking about it's functionality for making custom animations using CSS.
+
+- We can create custom animations in jQuery using the `animate()` method:
+```js
+$(selector).animate({css properties}, speed);
+```
+
+<br>
+
+- The first parameter defines the CSS properties to change. It's possible to animate multiple properties at the same time. These properties are dumped inside of an object and are separated by commas. For each property the final value should be set, the animation method will change the value of the properties to the value passed into the first argument. The method doesn't limit you to one type of value, there are actually a couple of ways to indicate the value the property will have:
+    - The final value can be absolute, for example: `width: 100px` will change the width to 100 pixels.
+    - The final value can also be relative, for example: `width: '+=100px'` will increase the width by 100 pixels.
+
+<br>
+
+- The second parameter indicates the speed. Just like in previous topics, strings like `fast` and `slow` can be used as well as the time in milliseconds.
+
+- The third argument (optional), allows a function that will be called after the method.
+
+> NOTE: In comparison to the preceding methods, these animations don't modify the visibility of the element, this means that if we want to modify it's visibility, we'll have to do so by acting on it's CSS display property once the animation is over. It should also be noted that in order to chain animations, the third argument should be used to define the new steps for the animation.
+
+---
+
+<br>
+
+# AJAX
+
+AJAX (Asynchronous JavaScript and XML) serves to load and display content on a website without having to reload. Most web apps use this technology nowadays: Gmail, Google Maps, Youtube, Instagram, etc. jQuery makes working with AJAX extremely simple. By usaing jQuery's AJAX methods, we can make calls to a remote server and receive TXT, HTML, XML, or JSON (among a few) documents without having to reload.
+
+---
+
+### The `load()` Method:
+- 
