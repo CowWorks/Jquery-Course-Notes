@@ -676,4 +676,133 @@ AJAX (Asynchronous JavaScript and XML) serves to load and display content on a w
 ---
 
 ### The `load()` Method:
-- 
+- The `load()` method allows for the access and processing of documents from a server in order to use them on the website. The syntax is the following: 
+```js
+$(selector).load(url, data, callback);
+```
+
+<br>
+
+- The selector is the element or collection of elements that the data will be put into.
+
+- `URL` is the URL or location of the server where the data will be fetched from.
+
+- `data` is a plain object or string sent to the server with the request.
+
+- `callback` is a function that's executed when the request completes. It receives 3 parameters:
+    - `responseTxt`: A string with the content of the requested document. It will only be valid if the request is processed correctly.
+    - `statusTxt`: A string with the state of the request. `success` indicates that the request was successfull. Other strings like: `abort`, `error`, `notmodified`, `parsererror`, or `timeout` represent different errors which can occur when the request is made.
+    - `xhr`: Contains an `XMLHttpRequest` with additional information regarding the request and methods for special processing.
+
+---
+
+### Error Handling:
+- If the URL in the `load` method is correct, then everything should work fine. In the case that the URL is wrong we will see an error in the debugging console. In order to control errors we can use the callback function and the statusTxt parameter:
+```js
+function processRequest(responseTxt, statusTxt) {
+        
+        if(statusTxt != "success") {
+                alert("There was an error");
+                return;
+        }
+
+        this.html(responseTxt);
+}
+
+$("button").click(() => {
+        $("#ajax").load("data.txt", processRequest);
+});
+```
+
+---
+
+### Requesting a JSON Document:
+- JSON (JavaScript Object Notation) is an open standard file format which is commonly used in the web. This format represents what we recognize as a literal object in javascript, a structure with properties that allows us to group data. For example, we can represent a flight in the following way:
+```json
+{
+        airline: "Oceanic",
+        number: 815,
+        departure: {
+                IATA: "SYD",
+                time: "2004-09-22 14:55",
+                city: "Sydney"
+        },
+        arrival: {
+                IATA: "LAX",
+                time: "2004-09-23 10:42",
+                city: "Los Angeles"
+        }
+}
+```
+
+- This format has two main advantages:
+    - It's a structured format, which means that it's easier to access the information we need from the document.
+    - It's simple to convert it to a javascript object. Other structured formats (like XML) require additional tooling in order to extract the information from the document.
+
+<br>
+
+- In order to convert a string into a literal object we can use the `JSON.parse` method. The return of the method is an object with properties that can be accessed. A simpler way of doing so is with the `$.getJSON` method from jQuery. This method returns an object which can have actions chained to it:
+    - The `done(callbackSuccess)` action indicates what we want to do if the request was successful. The callback function receives the object as a parameter.
+    - The `fail(callbackError)` action indicates what we want to do if the request fails. The callback function may receive different parameters.
+
+<br>
+
+Here's an example on how a sort of e-mail system could work using the knowledge from this topic:
+```json
+{
+        "Quantity": 3,
+        "Mail": [
+                {
+                       "subject": "The subject of the first mail",
+                       "content": "The content of the first mail" 
+                },
+                {
+                        "subject": "The subject of the second mail",
+                        "content": "The content of the second mail"
+                },
+                {
+                        "subject": "The subject of the third mail",
+                        "content": "The content of the third mail"
+                }
+        ]
+}
+```
+
+```js
+$(document).ready(function() {
+        $("button").click(loadJSON);
+});
+
+function loadJSON() {
+        $.getJSON("mail.json")
+                .done(processRequest)
+                .fail(() => {
+                        alert("There was an error when loading the file");
+                })
+}
+
+function processRequest(json) {
+        $("#mails").empty().append("<h2>New Mails: " + json.Quantity + "</h2>");
+
+        for(let i = 0; i < json.Mail.length; i++) {
+                let mail = json.Mail[i];
+                let newMailElement = $("<div class='mail'></div>");
+
+                newMailElement = $(newMailElement).append("<h3>" + mail.subject + "</h3>");
+                newMailElement = $(newMailElement).append("<p>" + mail.content + "</p>");
+
+                $("#mails").append(newMailElement);
+        }
+}
+```
+
+<br>
+
+- As can be observed:
+    - The `getJSON` function was used instead of `load`. It should be noted that this function needs no selector.
+    - After using the function, we first chain the `done` action which has `processRequest` as a callback. The parameter is the object created from the document (mail.json), which we have named `json`.
+        - In `processRequest` we work with the object in order to extract it's properties and create DOM elements with them.
+        - It should also be noted that `Mail` is an object array, which allows us to iterate through it's content using a for loop.
+    - After the `done` action, we chain another action, the `fail` action, which will run in the event that the request fails. When triggered, it will send an alert notifying that something went wrong.
+
+---
